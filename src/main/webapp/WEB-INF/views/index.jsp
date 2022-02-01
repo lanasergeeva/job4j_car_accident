@@ -10,25 +10,24 @@
     <title>Accident</title>
 </head>
 <body>
-Hello : ${user}
 
-<%! int i = 1;%>
-<table class="table table-dark">
+<span class="d-block p-4 bg-dark text-white"><h1 style="text-align:center">Дорожные происшествия</h1></span>
+<table class="table table-hover table-dark">
     <thead>
     <tr>
-        <th scope="col">#</th>
-        <th scope="col">Numbers</th>
+        <th>Название происшествия</th>
+        <th>Описание</th>
+        <th>Адрес</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="numb" items="${numbers}">
+    <c:forEach var="acc" items="${all}">
         <tr>
-            <td><%=i++%>
-            </td>
-            <td>${numb}</td>
+            <td>${acc.name}</td>
+            <td>${acc.text}</td>
+            <td>${acc.address}</td>
         </tr>
     </c:forEach>
     </tbody>
-</table>
 </body>
 </html>
