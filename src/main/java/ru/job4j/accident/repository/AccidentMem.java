@@ -28,4 +28,11 @@ public class AccidentMem implements Store {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(accident);
     }
+
+    @Override
+    @Transactional
+    public Accident findById(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        return session.get(Accident.class, id);
+    }
 }

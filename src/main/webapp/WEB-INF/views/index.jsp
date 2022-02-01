@@ -11,8 +11,6 @@
     <title>Accident</title>
 </head>
 <body>
-<c:url var="createButton" value="/create">
-</c:url>
 <span class="d-block p-4 bg-dark text-white"><h1 style="text-align:center">Дорожные происшествия</h1></span>
 <table class="table table-hover table-dark">
     <thead>
@@ -20,14 +18,24 @@
         <th>Название происшествия</th>
         <th>Описание</th>
         <th>Адрес</th>
+        <th>Редактирование</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach var="acc" items="${all}">
+
+        <c:url var="createButton" value="/create">
+        </c:url>
+        <c:url var="updateButton" value="/update">
+            <c:param name="acId" value="${acc.id}"/>
+        </c:url>
+
         <tr>
             <td>${acc.name}</td>
             <td>${acc.text}</td>
             <td>${acc.address}</td>
+            <td><input type="button" value="Редактировать"
+                       onclick="window.location.href ='${updateButton}'"/></td>
         </tr>
     </c:forEach>
     </tbody>
