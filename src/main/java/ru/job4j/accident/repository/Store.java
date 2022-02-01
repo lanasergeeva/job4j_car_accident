@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface Store {
     List<Accident> findAll();
+
+    void save(Accident accident);
 }

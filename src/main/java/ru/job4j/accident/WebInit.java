@@ -2,26 +2,26 @@ package ru.job4j.accident;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
+import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 
-public class WebInit
-        extends AbstractAnnotationConfigDispatcherServletInitializer {
-    @Override
-    protected Class<?>[] getRootConfigClasses() {
-        return null;
-    }
-
-    @Override
-    protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{WebConfig.class};
-    }
-
-    @Override
-    protected String[] getServletMappings() {
-        return new String[]{"/"};
+public class WebInit implements WebApplicationInitializer {
+    public void onStartup(ServletContext servletCxt) {
+        AnnotationConfigWebApplicationContext ac = new AnnotationConfigWebApplicationContext();
+        ac.register(WebConfig.class);
+   /*     ac.refresh();*/
+        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+        filter.setEncoding("UTF-8");
+        filter.setForceEncoding(true);
+        filter.setForceRequestEncoding(true);
+        FilterRegistration.Dynamic encoding = servletCxt.addFilter("encoding", filter);
+        encoding.addMappingForUrlPatterns(null, false, "/*");
+        DispatcherServlet servlet = new DispatcherServlet(ac);
+        ServletRegistration.Dynamic registration = servletCxt.addServlet("app", servlet);
+        registration.setLoadOnStartup(1);
+        registration.addMapping("/");
     }
 }

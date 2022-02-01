@@ -7,10 +7,12 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
     <title>Accident</title>
 </head>
 <body>
-
+<c:url var="createButton" value="/create">
+</c:url>
 <span class="d-block p-4 bg-dark text-white"><h1 style="text-align:center">Дорожные происшествия</h1></span>
 <table class="table table-hover table-dark">
     <thead>
@@ -29,5 +31,16 @@
         </tr>
     </c:forEach>
     </tbody>
+</table>
+<div class="form-group row">
+    <div class="col-sm-10">
+        <input type="button" value="Создать новое"
+               onclick="window.location.href='${createButton}'">
+    </div>
+</div>
+
+<c:url var="createButton" value="/create">
+</c:url>
+<%--<a href="<c:url value='/create'/>">Добавить инцидент</a>--%>
 </body>
 </html>
