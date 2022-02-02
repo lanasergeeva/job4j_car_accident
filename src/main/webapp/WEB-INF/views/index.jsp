@@ -18,6 +18,7 @@
         <th>Название происшествия</th>
         <th>Описание</th>
         <th>Адрес</th>
+        <th>Тип</th>
         <th>Редактирование</th>
     </tr>
     </thead>
@@ -34,6 +35,7 @@
             <td>${acc.name}</td>
             <td>${acc.text}</td>
             <td>${acc.address}</td>
+            <td>${acc.type.name}</td>
             <td><input type="button" value="Редактировать"
                        onclick="window.location.href ='${updateButton}'"/></td>
         </tr>
@@ -47,8 +49,5 @@
     </div>
 </div>
 
-<c:url var="createButton" value="/create">
-</c:url>
-<%--<a href="<c:url value='/create'/>">Добавить инцидент</a>--%>
 </body>
 </html>

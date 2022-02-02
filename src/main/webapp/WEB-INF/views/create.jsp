@@ -19,23 +19,35 @@
     <div class="form-group row">
         <label for="inputEmail1" class="col-sm-2 col-form-label">Название</label>
         <div class="col-sm-30" style="width: 400px" ;>
-            <form:input path="name" id="inputEmail1" placeholder="Название происшествия" style="width: 400px;"/>
+            <form:input path="name" id="inputEmail1" autocomplete="off" placeholder="Название происшествия"
+                        style="width: 400px;"/>
         </div>
     </div>
 
     <div class="form-group row">
         <label for="inputEmail4" class="col-sm-2 col-form-label">Описание</label>
         <div class="col-sm-30" style="width: 400px;">
-            <form:textarea path="text" class="form-control" id="inputEmail4" placeholder="Описание" rows="3"
+            <form:textarea path="text" class="form-control" id="inputEmail4" autocomplete="off" placeholder="Описание"
+                           rows="3"
                            style="width: 400px;"/>
         </div>
     </div>
     <div class="form-group row">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Адрес</label>
         <div class="col-sm-30" style="width: 400px;">
-            <form:input path="address" id="inputEmail3" placeholder="Адрес" style="width: 400px;"/>
+            <form:input path="address" id="inputEmail3" autocomplete="off" placeholder="Адрес" style="width: 400px;"/>
         </div>
     </div>
+
+    <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Тип</label>
+        <div class="col-sm-30" style="width: 400px;">
+            <form:select path="type.id" class="custom-select" id="inputGroupSelect01">
+                <form:options items="${types}" itemValue="id" itemLabel="name"/>
+            </form:select>
+        </div>
+    </div>
+
     <div class="form-group row">
         <div class="col-sm-10">
             <button type="submit" class="btn btn-primary">Создать</button>

@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.accident.model.Accident;
 
+import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.service.Services;
 
 import java.util.List;
@@ -29,6 +30,9 @@ public class AccidentControl {
     public String create(Model model) {
         Accident accident = new Accident();
         model.addAttribute("accident", accident);
+        List<AccidentType> types = services.findAllTypes();
+        model.addAttribute("types", types);
+        System.out.println(types);
         return "create";
     }
 
@@ -42,6 +46,9 @@ public class AccidentControl {
     public String updateEmployee(@RequestParam("acId") int id, Model model) {
         Accident accident = services.findById(id);
         model.addAttribute("accident", accident);
+        List<AccidentType> types = services.findAllTypes();
+        model.addAttribute("types", types);
         return "create";
     }
+
 }

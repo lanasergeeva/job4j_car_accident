@@ -1,5 +1,7 @@
 package ru.job4j.accident.model;
+
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +17,10 @@ public class Accident {
     private String text;
     @Column(name = "address")
     private String address;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH,
+            CascadeType.REFRESH, CascadeType.PERSIST})
+    @JoinColumn(name = "type_id")
+    private AccidentType type;
 
     public Accident() {
     }
@@ -23,6 +29,13 @@ public class Accident {
         this.name = name;
         this.text = text;
         this.address = address;
+    }
+
+    public Accident(String name, String text, String address, AccidentType type) {
+        this.name = name;
+        this.text = text;
+        this.address = address;
+        this.type = type;
     }
 
     public int getId() {
@@ -57,6 +70,14 @@ public class Accident {
         this.address = address;
     }
 
+    public AccidentType getType() {
+        return type;
+    }
+
+    public void setType(AccidentType type) {
+        this.type = type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -81,6 +102,7 @@ public class Accident {
                 + ", name='" + name + '\''
                 + ", text='" + text + '\''
                 + ", address='" + address + '\''
+                + ", type=" + type
                 + '}';
     }
 }
