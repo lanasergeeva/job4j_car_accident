@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
+import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.repository.Store;
 
 import javax.transaction.Transactional;
@@ -36,5 +37,17 @@ public class AccidentService implements Services {
     @Override
     public List<AccidentType> findAllTypes() {
         return store.findAllTypes();
+    }
+
+    @Override
+    @Transactional
+    public List<Rule> findAllRules() {
+        return store.findAllRules();
+    }
+
+    @Override
+    @Transactional
+    public Rule findRuleById(int id) {
+        return store.findRuleById(id);
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
+import ru.job4j.accident.model.Rule;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -21,7 +22,10 @@ public class AccidentMem implements Store {
     @Transactional
     public List<Accident> findAll() {
         Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("from Accident").list();
+        String select = "SELECT DISTINCT a FROM Accident a "
+                + "LEFT JOIN FETCH a.rules r "
+                + "ORDER BY a.id";
+        return session.createQuery(select, Accident.class).list();
     }
 
     @Override
@@ -39,8 +43,23 @@ public class AccidentMem implements Store {
     }
 
     @Override
+    @Transactional
     public List<AccidentType> findAllTypes() {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("from AccidentType").list();
+    }
+
+    @Override
+    @Transactional
+    public List<Rule> findAllRules() {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("from Rule").list();
+    }
+
+    @Override
+    @Transactional
+    public Rule findRuleById(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        return session.get(Rule.class, id);
     }
 }

@@ -19,6 +19,7 @@
         <th>Описание</th>
         <th>Адрес</th>
         <th>Тип</th>
+        <th>Правило</th>
         <th>Редактирование</th>
     </tr>
     </thead>
@@ -36,6 +37,11 @@
             <td>${acc.text}</td>
             <td>${acc.address}</td>
             <td>${acc.type.name}</td>
+            <td>
+                <c:forEach items="${acc.rules}" var="rule">
+                    <c:out value="${rule.name}; "/>
+                </c:forEach>
+            </td>
             <td><input type="button" value="Редактировать"
                        onclick="window.location.href ='${updateButton}'"/></td>
         </tr>

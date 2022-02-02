@@ -6,8 +6,11 @@ import org.springframework.web.bind.annotation.*;
 import ru.job4j.accident.model.Accident;
 
 import ru.job4j.accident.model.AccidentType;
+import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.service.Services;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -22,6 +25,7 @@ public class AccidentControl {
     @GetMapping("/")
     public String index(Model model) {
         List<Accident> all = services.findAll();
+        System.out.println(all);
         model.addAttribute("all", all);
         return "index";
     }
@@ -33,11 +37,19 @@ public class AccidentControl {
         List<AccidentType> types = services.findAllTypes();
         model.addAttribute("types", types);
         System.out.println(types);
+        List<Rule> rules = services.findAllRules();
+        model.addAttribute("rules", rules);
+        System.out.println(rules);
         return "create";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute Accident accident) {
+    public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
+        String[] ids = req.getParameterValues("rIds");
+        Arrays.stream(ids)
+                .mapToInt(Integer::parseInt)
+                .mapToObj(id -> services.findRuleById(id))
+                .forEach(accident::addRule);
         services.save(accident);
         return "redirect:/";
     }
@@ -48,6 +60,8 @@ public class AccidentControl {
         model.addAttribute("accident", accident);
         List<AccidentType> types = services.findAllTypes();
         model.addAttribute("types", types);
+        List<Rule> rules = services.findAllRules();
+        model.addAttribute("rules", rules);
         return "create";
     }
 

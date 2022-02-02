@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <html>
@@ -18,7 +19,7 @@
     <br>
     <div class="form-group row">
         <label for="inputEmail1" class="col-sm-2 col-form-label">Название</label>
-        <div class="col-sm-30" style="width: 400px" ;>
+        <div class="col-sm-30" style="width: 400px">
             <form:input path="name" id="inputEmail1" autocomplete="off" placeholder="Название происшествия"
                         style="width: 400px;"/>
         </div>
@@ -47,7 +48,16 @@
             </form:select>
         </div>
     </div>
-
+    <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Правило</label>
+        <div class="col-sm-30" style="width: 400px;">
+            <select class="custom-select" name="rIds" multiple>
+                <c:forEach var="rule" items="${rules}">
+                    <option value="${rule.id}">${rule.name}</option>
+                </c:forEach>
+            </select>
+        </div>
+    </div>
     <div class="form-group row">
         <div class="col-sm-10">
             <button type="submit" class="btn btn-primary">Создать</button>
