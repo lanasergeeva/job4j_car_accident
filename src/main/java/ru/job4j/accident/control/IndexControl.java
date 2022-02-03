@@ -1,27 +1,25 @@
-/*
 package ru.job4j.accident.control;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.job4j.accident.model.Accident;
-import ru.job4j.accident.service.Services;
+import ru.job4j.accident.repository.AccidentJdbcTemplate;
 
 import java.util.List;
 
 @Controller
 public class IndexControl {
-    private Services services;
+    private final AccidentJdbcTemplate accidents;
 
-    public IndexControl(Services services) {
-        this.services = services;
+    public IndexControl(AccidentJdbcTemplate accidents) {
+        this.accidents = accidents;
     }
 
-    @GetMapping("/")
+    @GetMapping("/jdbc")
     public String index(Model model) {
-        List<Accident> all = services.findAll();
-        model.addAttribute("all", all);
-        return "index";
+        List<Accident> all = accidents.getAll();
+        model.addAttribute("accidents", all);
+        return "indexjdbc";
     }
 }
-*/
