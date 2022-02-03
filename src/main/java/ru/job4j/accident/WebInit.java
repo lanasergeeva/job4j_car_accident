@@ -1,5 +1,5 @@
 package ru.job4j.accident;
-
+/*     ac.refresh();*/
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -11,8 +11,7 @@ import javax.servlet.ServletRegistration;
 public class WebInit implements WebApplicationInitializer {
     public void onStartup(ServletContext servletCxt) {
         AnnotationConfigWebApplicationContext ac = new AnnotationConfigWebApplicationContext();
-        ac.register(WebConfig.class);
-   /*     ac.refresh();*/
+        ac.register(WebConfig.class, HbmConfig.class);
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
         filter.setForceEncoding(true);
