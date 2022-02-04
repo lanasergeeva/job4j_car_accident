@@ -95,11 +95,4 @@ public class MemAccidentStore implements MemoryStore {
         return accidentTypes.get(id);
     }
 
-    public static void main(String[] args) {
-        MemAccidentStore s = new MemAccidentStore();
-        Accident accident =
-                new Accident("Lana", "m", "mk");
-        //System.out.println(accident.getType().getId());
-        System.out.println(s.accidents);
-    }
 }

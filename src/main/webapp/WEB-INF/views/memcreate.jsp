@@ -12,7 +12,6 @@
 
 
 <form action="<c:url value='/savemem'/>" method='POST'>
-    <%--<form:hidden path="id"/>--%>
     <div class="row" style="width: 650px; display:inline-block;">
         <span class="d-block p-2 bg-primary text-white text-align:center"><h3
                 style="text-align:center">Создать</h3></span>
