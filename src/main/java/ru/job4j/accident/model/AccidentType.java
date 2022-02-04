@@ -14,7 +14,8 @@ public class AccidentType {
     private int id;
     @Column(name = "name", nullable = false)
     private String name;
-    @OneToMany(mappedBy = "type", cascade = CascadeType.ALL,
+    @OneToMany(mappedBy = "type", cascade = {CascadeType.MERGE, CascadeType.DETACH,
+            CascadeType.REFRESH, CascadeType.PERSIST},
             orphanRemoval = true)
     private List<Accident> allAccident;
 
@@ -38,7 +39,7 @@ public class AccidentType {
         this.name = name;
     }
 
-        public void addAccidentToType(Accident accident) {
+    public void addAccidentToType(Accident accident) {
         if (allAccident == null) {
             allAccident = new ArrayList<>();
         }
