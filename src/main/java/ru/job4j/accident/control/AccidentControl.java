@@ -65,4 +65,10 @@ public class AccidentControl {
         return "create";
     }
 
+    @RequestMapping("/delete")
+    public String deleteEmployee(@RequestParam("acId") int id) {
+        services.deleteAccident(id);
+        return "redirect:/";
+    }
+
 }

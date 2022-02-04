@@ -18,4 +18,6 @@ public interface Store {
     List<Rule> findAllRules();
 
     Rule findRuleById(int id);
+
+    void deleteAccident(int id);
 }

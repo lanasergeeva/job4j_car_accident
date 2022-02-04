@@ -13,8 +13,12 @@ import java.util.List;
 @Service
 @Transactional
 public class AccidentService implements Services {
-    @Autowired
-    private Store store;
+
+    private final Store store;
+
+    public AccidentService(Store store) {
+        this.store = store;
+    }
 
     @Override
     @Transactional
@@ -49,5 +53,10 @@ public class AccidentService implements Services {
     @Transactional
     public Rule findRuleById(int id) {
         return store.findRuleById(id);
+    }
+
+    @Override
+    public void deleteAccident(int id) {
+        store.deleteAccident(id);
     }
 }

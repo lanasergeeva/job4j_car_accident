@@ -1,4 +1,4 @@
-*create table accident (
+create table accident (
 id serial primary key,
 name text,
 text text,
@@ -34,3 +34,14 @@ insert into accident (name, text, address) values
 /*alter table accident add column type_id int;*/
 /*alter table accident add constraint type_constraint foreign key(type_id)
 references typeAccident(id);*/
+
+create table rules (
+                       id serial primary key,
+                       name text);
+
+insert into rules (name) values ('Правило 1.1'), ('Правило 1.2'), ('Правило 1.3');
+
+create table accident_rules (
+                                id serial primary key,
+                                rules_id int references rules(id),
+                                accident_id int references accident(id));

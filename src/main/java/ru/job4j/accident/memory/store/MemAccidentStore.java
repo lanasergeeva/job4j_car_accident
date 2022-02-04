@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Repository
-@Transactional
+/*@Repository
+@Transactional*/
 public class MemAccidentStore implements MemoryStore {
     private final Map<Integer, Accident> accidents = new HashMap<>();
 

@@ -12,7 +12,7 @@ import ru.job4j.accident.memory.services.MemoryServices;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
-@Controller
+/*@Controller*/
 public class MemAccidentControl {
 
     private final MemoryServices services;

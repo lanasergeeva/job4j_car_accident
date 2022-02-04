@@ -21,6 +21,7 @@
         <th>Тип</th>
         <th>Правило</th>
         <th>Редактирование</th>
+        <th>Удалить</th>
     </tr>
     </thead>
     <tbody>
@@ -29,6 +30,9 @@
         <c:url var="createButton" value="/create">
         </c:url>
         <c:url var="updateButton" value="/update">
+            <c:param name="acId" value="${acc.id}"/>
+        </c:url>
+        <c:url var="deleteButton" value="/delete">
             <c:param name="acId" value="${acc.id}"/>
         </c:url>
 
@@ -44,6 +48,8 @@
             </td>
             <td><input type="button" value="Редактировать"
                        onclick="window.location.href ='${updateButton}'"/></td>
+            <td><input type="button" value="Удалить"
+                       onclick="window.location.href ='${deleteButton}'"/></td>
         </tr>
     </c:forEach>
     </tbody>
@@ -54,6 +60,5 @@
                onclick="window.location.href='${createButton}'">
     </div>
 </div>
-
 </body>
 </html>

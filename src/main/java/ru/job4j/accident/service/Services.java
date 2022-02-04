@@ -6,7 +6,7 @@ import ru.job4j.accident.model.Rule;
 
 import java.util.List;
 
-public interface Services {
+public interface Services  {
     List<Accident> findAll();
 
     void save(Accident accident);
@@ -18,4 +18,7 @@ public interface Services {
     List<Rule> findAllRules();
 
     Rule findRuleById(int id);
+
+    void deleteAccident(int id);
 }
+

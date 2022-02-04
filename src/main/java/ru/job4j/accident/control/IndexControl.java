@@ -9,7 +9,7 @@ import ru.job4j.accident.repository.AccidentRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+/*@Controller*/
 public class IndexControl {
     private final AccidentRepository accidents;
 

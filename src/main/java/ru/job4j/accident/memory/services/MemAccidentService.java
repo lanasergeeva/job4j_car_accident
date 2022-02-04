@@ -10,8 +10,8 @@ import javax.transaction.Transactional;
 
 import java.util.List;
 
-@Service
-@Transactional
+/*@Service
+@Transactional*/
 public class MemAccidentService implements MemoryServices {
 
     private final MemoryStore store;

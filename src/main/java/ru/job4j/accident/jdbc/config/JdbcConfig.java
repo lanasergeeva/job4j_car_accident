@@ -1,4 +1,4 @@
-package ru.job4j.accident;
+package ru.job4j.accident.jdbc.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,9 +9,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 
-@Configuration
+/*@Configuration
 @PropertySource("classpath:app.properties")
-@EnableTransactionManagement
+@EnableTransactionManagement*/
 public class JdbcConfig {
 
     @Bean

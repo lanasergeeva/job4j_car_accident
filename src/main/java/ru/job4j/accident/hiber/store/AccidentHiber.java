@@ -1,22 +1,26 @@
-package ru.job4j.accident.repository;
+package ru.job4j.accident.hiber.store;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
+import ru.job4j.accident.repository.Store;
 
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
 @Transactional
-public class AccidentMem implements Store {
+public class AccidentHiber implements Store {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
+
+    public AccidentHiber(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     @Transactional
@@ -61,5 +65,14 @@ public class AccidentMem implements Store {
     public Rule findRuleById(int id) {
         Session session = sessionFactory.getCurrentSession();
         return session.get(Rule.class, id);
+    }
+
+    @Override
+    @Transactional
+    public void deleteAccident(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("delete from Accident"
+                + " where id =:acId").setParameter("acId", id);
+        query.executeUpdate();
     }
 }

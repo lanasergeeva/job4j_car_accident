@@ -18,8 +18,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 
-@Repository
-@Transactional
+/*@Repository
+@Transactional*/
 public class AccidentJdbcTemplate implements Store {
 
     private static final Logger LOG = LoggerFactory.getLogger(AccidentJdbcTemplate.class.getName());
