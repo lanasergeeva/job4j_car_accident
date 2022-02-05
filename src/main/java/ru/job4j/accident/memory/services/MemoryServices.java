@@ -23,4 +23,6 @@ public interface MemoryServices {
     Rule findRuleById(int id);
 
     void deleteAccident(int id);
+
+    void addRulesAndType(Accident accident, String[] rIds);
 }

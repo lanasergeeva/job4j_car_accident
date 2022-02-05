@@ -17,6 +17,7 @@ public class MemAccidentService implements MemoryServices {
     private final MemoryStore store;
 
     public MemAccidentService(MemoryStore store) {
+
         this.store = store;
     }
 
@@ -37,6 +38,7 @@ public class MemAccidentService implements MemoryServices {
 
     @Override
     public List<AccidentType> findAllTypes() {
+
         return store.findAllTypes();
     }
 
@@ -57,6 +59,12 @@ public class MemAccidentService implements MemoryServices {
 
     @Override
     public AccidentType findByIdType(int id) {
-       return store.findByIdType(id);
+
+        return store.findByIdType(id);
+    }
+
+    @Override
+    public void addRulesAndType(Accident accident, String[] rIds) {
+        store.addRulesAndType(accident, rIds);
     }
 }

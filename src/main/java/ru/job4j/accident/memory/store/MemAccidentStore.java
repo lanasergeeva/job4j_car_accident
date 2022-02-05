@@ -6,10 +6,7 @@ import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /*@Repository
@@ -95,4 +92,12 @@ public class MemAccidentStore implements MemoryStore {
         return accidentTypes.get(id);
     }
 
+    @Override
+    public void addRulesAndType(Accident accident, String[] ids) {
+        Arrays.stream(ids)
+                .mapToInt(Integer::parseInt)
+                .mapToObj(this::findRuleById)
+                .forEach(accident::addRule);
+        accident.setType(findByIdType(accident.getType().getId()));
+    }
 }

@@ -33,12 +33,7 @@ public class MemAccidentControl {
     @PostMapping("/savemem")
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
         String[] ids = req.getParameterValues("rIds");
-        Arrays.stream(ids)
-                .mapToInt(Integer::parseInt)
-                .mapToObj(services::findRuleById)
-                .forEach(accident::addRule);
-        accident.setType(services.findByIdType(accident.getType().getId()));
-        System.out.println(accident);
+        services.addRulesAndType(accident, ids);
         services.save(accident);
         return "redirect:/";
     }
