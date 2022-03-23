@@ -55,6 +55,8 @@ public class AccidentControl {
 
     @RequestMapping("/update")
     public String updateEmployee(@RequestParam("acId") int id, Model model) {
+        model.addAttribute("user",
+                SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         Accident accident = services.findById(id);
         model.addAttribute("accident", accident);
         List<AccidentType> types = services.findAllTypes();

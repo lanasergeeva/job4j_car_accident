@@ -13,7 +13,7 @@
 <body>
 
 <div class="text-right">
-    <input type="button" value="Login as : ${user.username}">
+    <input type="button" value="Пользователь:  ${user.username}">
 </div>
 <span class="d-block p-4 bg-dark text-white"><h1 style="text-align:center">Дорожные происшествия</h1></span>
 <table class="table table-hover table-dark">
@@ -62,9 +62,6 @@
     <div class="col-sm-10">
         <input type="button" value="Создать новое"
                onclick="window.location.href='${createButton}'">
-    </div>
-    <div class="col-sm-10">
-        <input type="button" value="Login as : ${user.username}">
     </div>
 </div>
 </body>
