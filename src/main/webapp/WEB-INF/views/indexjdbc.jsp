@@ -7,6 +7,9 @@
     <title>Accident</title>
 </head>
 <body>
+<div>
+    Login as : ${user.username}
+</div>
 <c:forEach items="${accidents}" var="accident">
     <c:out value="${accident.name}"/></br>
 </c:forEach>

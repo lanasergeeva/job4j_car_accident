@@ -1,5 +1,6 @@
 package ru.job4j.accident.control;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,8 @@ public class AccidentControl {
         List<Accident> all = services.findAll();
         System.out.println(all);
         model.addAttribute("all", all);
+        model.addAttribute("user",
+                SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         return "index";
     }
 
