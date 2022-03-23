@@ -15,6 +15,7 @@ import ru.job4j.accident.repository.Store;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -164,5 +165,13 @@ public class AccidentJdbcTemplate implements Store {
         jdbc.update(
                 "delete from accident where id = ?",
                 (long) id);
+    }
+
+    @Override
+    public void addRules(Accident accident, String[] ids) {
+        Arrays.stream(ids)
+                .mapToInt(Integer::parseInt)
+                .mapToObj(this::findRuleById)
+                .forEach(accident::addRule);
     }
 }
