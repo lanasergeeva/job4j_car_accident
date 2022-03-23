@@ -20,5 +20,7 @@ public interface Services  {
     Rule findRuleById(int id);
 
     void deleteAccident(int id);
+
+    void addRules(Accident accident, String[] ids);
 }
 

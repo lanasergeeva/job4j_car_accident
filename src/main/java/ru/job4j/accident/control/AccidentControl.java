@@ -10,13 +10,12 @@ import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.service.Services;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
 public class AccidentControl {
 
-    private Services services;
+    private final Services services;
 
     public AccidentControl(Services services) {
         this.services = services;
@@ -46,10 +45,7 @@ public class AccidentControl {
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
         String[] ids = req.getParameterValues("rIds");
-        Arrays.stream(ids)
-                .mapToInt(Integer::parseInt)
-                .mapToObj(id -> services.findRuleById(id))
-                .forEach(accident::addRule);
+        services.addRules(accident, ids);
         services.save(accident);
         return "redirect:/";
     }

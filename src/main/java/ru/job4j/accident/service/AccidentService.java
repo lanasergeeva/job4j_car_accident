@@ -59,4 +59,9 @@ public class AccidentService implements Services {
     public void deleteAccident(int id) {
         store.deleteAccident(id);
     }
+
+    @Override
+    public void addRules(Accident accident, String[] ids) {
+        store.addRules(accident, ids);
+    }
 }
