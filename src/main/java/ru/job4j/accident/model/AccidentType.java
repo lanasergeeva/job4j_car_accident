@@ -14,8 +14,7 @@ public class AccidentType {
     private int id;
     @Column(name = "name", nullable = false)
     private String name;
-    @OneToMany(mappedBy = "type", cascade = {CascadeType.MERGE, CascadeType.DETACH,
-            CascadeType.REFRESH, CascadeType.PERSIST},
+    @OneToMany(mappedBy = "type",
             orphanRemoval = true)
     private List<Accident> allAccident;
 

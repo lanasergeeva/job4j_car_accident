@@ -14,8 +14,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
-@Repository
-@Transactional
+/*@Repository
+@Transactional*/
 public class AccidentHiber implements Store {
 
     private final SessionFactory sessionFactory;
@@ -47,16 +47,19 @@ public class AccidentHiber implements Store {
 
     @Override
     public Accident findById(int id) {
+
         return tx(session -> session.get(Accident.class, id));
     }
 
     @Override
     public List<AccidentType> findAllTypes() {
+
         return tx(session -> session.createQuery("from AccidentType").list());
     }
 
     @Override
     public List<Rule> findAllRules() {
+
         return tx(session -> session.createQuery("from Rule").list());
     }
 

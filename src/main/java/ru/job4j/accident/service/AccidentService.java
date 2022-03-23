@@ -10,8 +10,8 @@ import ru.job4j.accident.repository.Store;
 import javax.transaction.Transactional;
 import java.util.List;
 
-@Service
-@Transactional
+/*@Service
+@Transactional*/
 public class AccidentService implements Services {
 
     private final Store store;
