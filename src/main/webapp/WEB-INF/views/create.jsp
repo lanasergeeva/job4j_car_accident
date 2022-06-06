@@ -9,60 +9,88 @@
     <title>Создание</title>
 </head>
 <body>
-<form:form action="save" modelAttribute="accident">
-    <form:hidden path="id"/>
-    <div class="row" style="width: 650px; display:inline-block;">
-        <span class="d-block p-2 bg-primary text-white text-align:center"><h3
-                style="text-align:center">Создать</h3></span>
-    </div>
-    <br>
-    <br>
-    <div class="form-group row">
-        <label for="inputEmail1" class="col-sm-2 col-form-label">Название</label>
-        <div class="col-sm-30" style="width: 400px">
-            <form:input path="name" id="inputEmail1" autocomplete="off" placeholder="Название происшествия"
-                        style="width: 400px;"/>
-        </div>
-    </div>
 
-    <div class="form-group row">
-        <label for="inputEmail4" class="col-sm-2 col-form-label">Описание</label>
-        <div class="col-sm-30" style="width: 400px;">
-            <form:textarea path="text" class="form-control" id="inputEmail4" autocomplete="off" placeholder="Описание"
-                           rows="3"
-                           style="width: 400px;"/>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="inputEmail3" class="col-sm-2 col-form-label">Адрес</label>
-        <div class="col-sm-30" style="width: 400px;">
-            <form:input path="address" id="inputEmail3" autocomplete="off" placeholder="Адрес" style="width: 400px;"/>
-        </div>
-    </div>
+<c:url var="createButton" value="/create">
+</c:url>
+<c:url var="logoutRef" value="/logout">
+</c:url>
+<c:url var="indexRef" value="/">
+</c:url>
 
-    <div class="form-group row">
-        <label for="inputEmail3" class="col-sm-2 col-form-label">Тип</label>
-        <div class="col-sm-30" style="width: 400px;">
-            <form:select path="type.id" class="custom-select" id="inputGroupSelect01">
-                <form:options items="${types}" itemValue="id" itemLabel="name"/>
-            </form:select>
+
+<div class="container bg-dark text-white">
+    <nav class="navbar navbar-expand-lg navbar-dark rounded" aria-label="Twelfth navbar example">
+        <div class="container-fluid bg-dark text-white">
+            <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample10">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="${indexRef}">Все нарушения</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="${createButton}">Внести новое нарушение</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${logoutRef}">${user.username} Выйти</a>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </nav>
+
+    <div class="row justify-content-md-center">
+        <form:form action="save" modelAttribute="accident">
+            <form:hidden path="id"/>
+            <br>
+            <br>
+            <div class="form-group row">
+                <label for="inputEmail1" class="col-sm-2 col-form-label mr-5">Название</label>
+                <div class="col-sm-30" style="width: 400px">
+                    <form:input path="name" id="inputEmail1" autocomplete="off" placeholder="Название происшествия"
+                                style="width: 400px;"/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="inputEmail4" class="col-sm-2 col-form-label mr-5">Описание</label>
+                <div class="col-sm-30" style="width: 400px;">
+                    <form:textarea path="text" class="form-control" id="inputEmail4" autocomplete="off"
+                                   placeholder="Описание"
+                                   rows="3"
+                                   style="width: 400px;"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label mr-5">Адрес</label>
+                <div class="col-sm-30" style="width: 400px;">
+                    <form:input path="address" id="inputEmail3" autocomplete="off" placeholder="Адрес"
+                                style="width: 400px;"/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label mr-5">Вид нарушения</label>
+                <div class="col-sm-30" style="width: 400px;">
+                    <form:select path="type.id" class="custom-select" id="inputGroupSelect01">
+                        <form:options items="${types}" itemValue="id" itemLabel="name"/>
+                    </form:select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label mr-5">Статья</label>
+                <div class="col-sm-30" style="width: 400px;">
+                    <select class="custom-select" name="rIds" multiple>
+                        <c:forEach var="rule" items="${rules}">
+                            <option value="${rule.id}">${rule.name}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <input type="submit" name="submit" class="btn btn-lg btn-light btn-md"
+                       value="Создать">
+            </div>
+        </form:form>
     </div>
-    <div class="form-group row">
-        <label for="inputEmail3" class="col-sm-2 col-form-label">Правило</label>
-        <div class="col-sm-30" style="width: 400px;">
-            <select class="custom-select" name="rIds" multiple>
-                <c:forEach var="rule" items="${rules}">
-                    <option value="${rule.id}">${rule.name}</option>
-                </c:forEach>
-            </select>
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Создать</button>
-        </div>
-    </div>
-</form:form>
+</div>
 </body>
 </html>

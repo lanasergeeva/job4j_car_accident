@@ -7,41 +7,25 @@ create table typeAccident (
 id serial primary key,
 name text);
 
-insert into typeAccident(name) values ('Машина и столб'),
-                                      ('Две машины'), ('Машина и забор');
-
-
-insert into accident (name, text, address) values
-('Водитель, столб, ночь',
- 'Начинающий водитель не смог разъехаться во дворе со столбом.
-Отделался испугом и скрылся под покровом ночи. Пострадал багажник. Столб не пострадал ', 'Кесаева');
-
-insert into accident (name, text, address) values
-('Водитель и забор',
- 'Начинающий водитель выехал из гаража прям в соседский забор.
-Пострадал задний бампер(сколы и потертости). Водитель отделался скандалом', 'ТСН Дачи');
-
-insert into accident (name, text, address) values
-('Водитель и гараж',
- 'Начинающий водитель въехал в стену гаража.
-Пострадал передний бампер(сколы и потертости). Водитель отделался плохим настроением', 'ТСН Дачи');
-
-insert into accident (name, text, address) values
-('Водитель, пробка, окно',
-'Водителя заворожил вид за окном во время простоя в пробке, поэтому он зажал педаль газа и въехал в спокойно стоющую в этой же пробке Toyota Camry.
-Водитель отделался испорченным выходным и штрафом. Пострадал передний бамер - сломан пополам, также погнута рамка номера.', '5км');
-
-/*alter table accident add column type_id int;*/
-/*alter table accident add constraint type_constraint foreign key(type_id)
-references typeAccident(id);*/
 
 create table rules (
-                       id serial primary key,
-                       name text);
+id serial primary key,
+name text);
 
-insert into rules (name) values ('Правило 1.1'), ('Правило 1.2'), ('Правило 1.3');
 
 create table accident_rules (
-                                id serial primary key,
-                                rules_id int references rules(id),
-                                accident_id int references accident(id));
+id serial primary key,
+rules_id int references rules(id),
+accident_id int references accident(id));
+
+insert into typeaccident (name)
+values ('Управление транспортным средством, не зарегистрированным в установленном порядке'),
+       ('Передача управления транспортным средством лицу, не имеющему при себе документов на право управления им'),
+       ('Превышение установленной скорости движения транспортного средства на величину более 20, но не более 40 километров в час'),
+       ('Нарушение правил расположения транспортного средства на проезжей части дороги, встречного разъезда, а равно движение по обочинам или пересечение организованной транспортной или пешей колонны либо занятие места в ней'),
+       ('Поворот налево или разворот в нарушение требований, предписанных дорожными знаками или разметкой проезжей части дороги');
+
+insert into rules (name) values ('12.1 ч.1 КоАП РФ'),
+                                ('12.3 ч.3 КоАП РФ'),
+                                ('12.9 ч.2 КоАП РФ'),
+                                ('12.16 ч.3 КоАП РФ'),('12.16 ч.2 КоАП РФ');

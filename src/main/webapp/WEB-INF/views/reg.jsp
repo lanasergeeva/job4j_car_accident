@@ -14,20 +14,36 @@
             ${errorMessage}
     </div>
 </c:if>
-<form name='login' action="<c:url value='/reg'/>" method='POST'>
-    <div class="form-group">
-        <label for="exampleInputEmail1">Имя пользователя</label>
-        <input type="text" name='username' style="width: 400px;" class="form-control" id="exampleInputEmail1"
-               aria-describedby="emailHelp" placeholder="Введите Ваш логин">
+
+<div id="login">
+    <h3 class="text-center text-white pt-5">Login form</h3>
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" name='login' action="<c:url value='/reg'/>" method='POST'>
+                        <h3 class="text-center text-dark">Регистрация</h3>
+                        <div class="form-group">
+                            <label for="username" class="text-dark">Логин:</label><br>
+                            <input type="text" autocomplete="off" name='username' id="username" class="form-control"
+                                   placeholder="Введите логин">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="text-dark">Пароль:</label><br>
+                            <input type="text" autocomplete="off" name='password' id="password" class="form-control"
+                                   placeholder="Введите пароль">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" class="btn btn-dark btn-md mr-5" value="Сохранить">
+                            <input type="button" class="btn btn-dark btn-md" value="Войти в аккаунт"
+                                   onclick="window.location.href ='${logButton}'"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Пароль</label>
-        <input type="password" name='password' style="width: 400px;"
-               class="form-control" id="exampleInputPassword1" placeholder="Введите пароль">
-    </div>
-    <button type="submit" name="submit" value="submit" class="btn btn-primary">Отправить</button>
-    <input type="button" class="btn btn-primary" value="Уже есть аккаунт?"
-           onclick="window.location.href ='${logButton}'"/>
-</form>
+</div>
+
 </body>
 </html>

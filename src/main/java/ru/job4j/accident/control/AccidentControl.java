@@ -35,15 +35,10 @@ public class AccidentControl {
     @GetMapping("/create")
     public String create(Model model) {
         Accident accident = new Accident();
-        model.addAttribute("accident", accident);
-        List<AccidentType> types = services.findAllTypes();
-        model.addAttribute("types", types);
-        System.out.println(types);
-        List<Rule> rules = services.findAllRules();
-        model.addAttribute("rules", rules);
-        System.out.println(rules);
+        extracted(model, accident);
         return "create";
     }
+
 
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
@@ -58,11 +53,7 @@ public class AccidentControl {
         model.addAttribute("user",
                 SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         Accident accident = services.findById(id);
-        model.addAttribute("accident", accident);
-        List<AccidentType> types = services.findAllTypes();
-        model.addAttribute("types", types);
-        List<Rule> rules = services.findAllRules();
-        model.addAttribute("rules", rules);
+        extracted(model, accident);
         return "create";
     }
 
@@ -72,4 +63,11 @@ public class AccidentControl {
         return "redirect:/";
     }
 
+    private void extracted(Model model, Accident accident) {
+        model.addAttribute("accident", accident);
+        List<AccidentType> types = services.findAllTypes();
+        model.addAttribute("types", types);
+        List<Rule> rules = services.findAllRules();
+        model.addAttribute("rules", rules);
+    }
 }
